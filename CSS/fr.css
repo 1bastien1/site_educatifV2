@@ -1,0 +1,36 @@
+body {
+    background-image: url("../img/fr.jpg");
+    background-repeat: no-repeat;
+    width: 100%;
+}
+
+
+
+
+
+.btn {
+    padding: 14px 24px;
+    border: 0 none;
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: 1px;
+
+    color: whitesmoke;
+}
+#dropdownMenu2{
+    background-color:#007BFF;
+}
+
+.dropdown-menu{
+    background-color: lightskyblue;
+}
+.bouton{
+    background-color: #007BFF;
+}
+
+.btn:hover,
+.btn:focus,
+.btn:active,
+.open > .dropdown-toggle.btn-primary {
+    background: #33a6cc;
+}
