@@ -2,7 +2,7 @@ window.onload = function () {
 
         var number = Math.floor(Math.random() * (10-0) + 0 ); //entier entre 0 et 10 inclus;
         var numberBis; //valeur de la table choisie
-        var res ;
+        var res = 0 ;
         var resHuman = 0;
          
 
@@ -15,9 +15,10 @@ window.onload = function () {
         localStorage.setItem("tableChoisie", $(this).val());
         console.log("valeur table ->"+$(this).val());
         numberBis = $(this).val() //entier entre 0 et la valeur de la table exclus (+1 -> inclus)
-        var res = number*numberBis;
+        res = number*numberBis;
         console.log("number -> " +number + "| numberBis -> "+ numberBis +"|| res -> "+res);
         if($(this).val() == 0){ //toutes les tables
+          numberBis = Math.floor(Math.random() * (10-0) + 0 );
           $("#dropdownTable").text("Toutes les tables");
           $("#spanCalcul").text(numberBis + " x " +number);
           
