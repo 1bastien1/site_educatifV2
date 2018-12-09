@@ -53,6 +53,9 @@ HEAD
 CARD
     );
 
+
+    parent::appendJsUrl("./JS/jquery3.3.1");
+
     }
 
 }
