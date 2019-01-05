@@ -9,24 +9,27 @@ window.onload = function () {
         localStorage.setItem("tableChoisie", 0);
         localStorage.setItem("bonneRep", 0);
         localStorage.setItem("totalRep", 0);
-   
+
+    //au click du bouton de choix des tables...
     $( ".dropdown-item" ).click(function() {
 
-        localStorage.setItem("tableChoisie", $(this).val());
+        localStorage.setItem("tableChoisie", parseInt( $(this).val(), 10) );
         console.log("valeur table ->"+$(this).val());
-        numberBis = $(this).val() //entier entre 0 et la valeur de la table exclus (+1 -> inclus)
+        numberBis = parseInt( $(this).val(), 10 ); //entier entre 0 et la valeur de la table exclus (+1 -> inclus)
         res = number*numberBis;
-        console.log("number -> " +number + "| numberBis -> "+ numberBis +"|| res -> "+res);
+        console.log("number -> " +number + " | numberBis -> "+ numberBis +" || res -> "+res);
+
         if($(this).val() == 0){ //toutes les tables
           numberBis = Math.floor(Math.random() * (10-0) + 0 );
           $("#dropdownTable").text("Toutes les tables");
           $("#spanCalcul").text(numberBis + " x " +number);
-          
         }
         else{ //une table particulière
-          $("#dropdownTable").text("Table de "+ $(this).val() );
+          $("#dropdownTable").html("Table de "+ $(this).val());
+
+
           $("#spanCalcul").html($(this).val() +" x " +number);
-          //commennt juste changer le texte entre les balises du button?
+          //comment juste changer le texte entre les balises du button?
         }  
       });
 
@@ -36,14 +39,16 @@ window.onload = function () {
           resHuman = parseInt($(this).val(), 10);
         } );
 
+        //à l'envoie du formulaire...
         $("#form").submit(function(){
-          localStorage.setItem("totalRep", localStorage.getItem("totalRep")+1);
-            if(res == resHuman){
+          localStorage.setItem("totalRep", localStorage.getItem("totalRep")+1); //on ajoute une réponse au compteur total dans tous les cas
+            
+          if(res == resHuman){
+              localStorage.setItem("bonneRep", localStorage.getItem("bonneRep")+1); //on ajoute une réponse au compteur des bonnes réponses
               bravo("okNotok");
-              localStorage.setItem("bonneRep", localStorage.getItem("bonneRep")+1);
             }
             else if(res != resHuman){
-              dommage("okNotok");
+             dommage("okNotok");
             }
          });
 

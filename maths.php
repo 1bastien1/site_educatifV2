@@ -62,7 +62,7 @@ $page->appendContent(<<<CALCUL
     </div>
     <div class="form-group mx-sm-3 mb-2">
       </div>
-    <button type="submit"class="btn btn-danger mb-2">Ok !</button>
+    <button type="submit" class="btn btn-danger mb-2">Ok !</button>
     <div id="okNotok">
     
     </div>
