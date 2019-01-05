@@ -28,7 +28,7 @@ INFO
 $page->appendContent(<<<CALCUL
     
   
-    <div class= ml-5 mt-5">
+    <div class= ml-5 mt-5 container">
     <div class="mx-auto">
     
         <div id="dropdownTable" class="dropdown mr-4 ">
@@ -51,6 +51,7 @@ $page->appendContent(<<<CALCUL
           </div>
     </div>
 
+    
     <div class="input-group mb-3">
     <div class="input-group-prepend">
       <span id="spanCalcul"class="input-group-text">0 x 0 = </span>
@@ -74,6 +75,3 @@ CALCUL
 
 $html = $page->toHTML();
 echo($html);
-
-
-

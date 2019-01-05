@@ -1,36 +1,33 @@
 window.onload = function () {
 
-        var number = Math.floor(Math.random() * (10-0) + 0 ); //entier entre 0 et 10 inclus;
+        var number; //valeur qui va changer à chaque calcul
         var numberBis; //valeur de la table choisie
         var res = 0 ;
         var resHuman = 0;
          
-
+        
         localStorage.setItem("tableChoisie", 0);
         localStorage.setItem("bonneRep", 0);
         localStorage.setItem("totalRep", 0);
 
     //au click du bouton de choix des tables...
     $( ".dropdown-item" ).click(function() {
-
+        number = Math.floor(Math.random() * (10-0) + 0 ); //entier entre 0 et 10 inclus;
         localStorage.setItem("tableChoisie", parseInt( $(this).val(), 10) );
-        console.log("valeur table ->"+$(this).val());
-        numberBis = parseInt( $(this).val(), 10 ); //entier entre 0 et la valeur de la table exclus (+1 -> inclus)
-        res = number*numberBis;
-        console.log("number -> " +number + " | numberBis -> "+ numberBis +" || res -> "+res);
-
         if($(this).val() == 0){ //toutes les tables
-          numberBis = Math.floor(Math.random() * (10-0) + 0 );
-          $("#dropdownTable").text("Toutes les tables");
+          numberBis = Math.floor(Math.random() * (10-0) + 0 ); 
+          //$("#dropdownTable").text("Toutes les tables");
           $("#spanCalcul").text(numberBis + " x " +number);
         }
         else{ //une table particulière
-          $("#dropdownTable").html("Table de "+ $(this).val());
-
-
+          numberBis = parseInt( $(this).val(), 10 );
+          //$("#dropdownTable").html("Table de "+ $(this).val());
           $("#spanCalcul").html($(this).val() +" x " +number);
           //comment juste changer le texte entre les balises du button?
         }  
+        res = parseInt(number*numberBis, 10);
+        console.log("valeur table ->"+$(this).val());
+        console.log("number -> " +number + " | numberBis -> "+ numberBis +" || res -> "+res);
       });
 
       
@@ -39,7 +36,7 @@ window.onload = function () {
           resHuman = parseInt($(this).val(), 10);
         } );
 
-        //à l'envoie du formulaire...
+        //au click du bouton ok ...
         $("#finish").click(function(){
           localStorage.setItem("totalRep", parseInt(localStorage.getItem("totalRep"), 10)+1); //on ajoute une réponse au compteur total dans tous les cas
             
@@ -57,23 +54,41 @@ window.onload = function () {
           $("#"+id+"").html(`<div class="alert alert-success" role="alert">
           Bravo tu as trouvé le résultat ! <i class="em em-upside_down_face"></i>  ${localStorage.getItem("bonneRep")} bonne réponces sur ${localStorage.getItem("totalRep")}
           </div")`);
-          $("#"+id+"").delay(5000);
+          $("#"+id+"").delay(2000);
+          newCalcul();
         }
         async function dommage(id){
           $("#"+id+"").html(`<div class="alert alert-danger ml-5" role="alert">
           Dommage <i class="em em-face_palm"></i> ${localStorage.getItem("bonneRep")} bonne réponces sur ${localStorage.getItem("totalRep")}
         </div>`);
-        $("#"+id+"").delay(5000);
+        $("#"+id+"").delay(2000);
+        newCalcul();
+        }
+
+        function newCalcul(){ 
+          //on remet le input vide
+          $("#inputCalcul").val = " vide";
+    
+          if(localStorage.getItem("tableChoisie") == 0){ //toutes les tables
+            number = Math.floor(Math.random() * (10-0) + 0 ); //entier entre 0 et 10 inclus;
+            numberBis = Math.floor(Math.random() * (10-0) + 0 );
+            $("#spanCalcul").text(numberBis + " x " +number);
+          }
+          else{ //une table particulière
+            number = Math.floor(Math.random() * (10-0) + 0 ); //entier entre 0 et 10 inclus;
+            numberBis = localStorage.getItem("tableChoisie");
+            $("#spanCalcul").html(localStorage.getItem("tableChoisie") +" x " +number);
+          //comment juste changer le texte entre les balises du button?
+          }
+
+          res = number*numberBis;  
+          console.log("valeur table ->"+ localStorage.getItem("tableChoisie"));
+          console.log("number -> " +number + " | numberBis -> "+ numberBis +" || res -> "+res);
+
         }
 
         
-        function sleep(ms) {
-          return new Promise(resolve => setTimeout(resolve, ms));
-        }
-
-        function getRandomInt(max) {
-          return Math.floor(Math.random() * Math.floor(max));
-        }
+        
 
 
 
