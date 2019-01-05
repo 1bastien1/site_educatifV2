@@ -40,11 +40,11 @@ window.onload = function () {
         } );
 
         //à l'envoie du formulaire...
-        $("#form").submit(function(){
-          localStorage.setItem("totalRep", localStorage.getItem("totalRep")+1); //on ajoute une réponse au compteur total dans tous les cas
+        $("#finish").click(function(){
+          localStorage.setItem("totalRep", parseInt(localStorage.getItem("totalRep"), 10)+1); //on ajoute une réponse au compteur total dans tous les cas
             
           if(res == resHuman){
-              localStorage.setItem("bonneRep", localStorage.getItem("bonneRep")+1); //on ajoute une réponse au compteur des bonnes réponses
+              localStorage.setItem("bonneRep", parseInt( localStorage.getItem("bonneRep"), 10)+1); //on ajoute une réponse au compteur des bonnes réponses
               bravo("okNotok");
             }
             else if(res != resHuman){
@@ -57,7 +57,7 @@ window.onload = function () {
           $("#"+id+"").html(`<div class="alert alert-success" role="alert">
           Bravo tu as trouvé le résultat ! <i class="em em-upside_down_face"></i>  ${localStorage.getItem("bonneRep")} bonne réponces sur ${localStorage.getItem("totalRep")}
           </div")`);
-          $("#"+id+"").delay(5000).hide();
+          $("#"+id+"").delay(5000);
         }
         async function dommage(id){
           $("#"+id+"").html(`<div class="alert alert-danger ml-5" role="alert">

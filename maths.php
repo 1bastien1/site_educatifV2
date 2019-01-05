@@ -24,11 +24,11 @@ INFO
 
 
 
-//le sernier div permet de fermer le conteneur 
+//le dernier div permet de fermer le conteneur 
 $page->appendContent(<<<CALCUL
     
-  <form class="form-inline ml-5 mt-5" id="form">
-    <div class="form-group">
+  
+    <div class= ml-5 mt-5">
     <div class="mx-auto">
     
         <div id="dropdownTable" class="dropdown mr-4 ">
@@ -62,11 +62,8 @@ $page->appendContent(<<<CALCUL
     </div>
     <div class="form-group mx-sm-3 mb-2">
       </div>
-    <button type="submit" class="btn btn-danger mb-2">Ok !</button>
-    <div id="okNotok">
-    
-    </div>
-  </form>
+    <button id="finish" class="btn btn-danger mb-2">Ok !</button>
+    <div id="okNotok"></div>
 
 CALCUL
 );
