@@ -12,20 +12,23 @@ window.onload = function () {
 
     //au click du bouton de choix des tables...
     $( ".dropdown-item" ).click(function() {
+
         number = Math.floor(Math.random() * (10-0) + 0 ); //entier entre 0 et 10 inclus;
         localStorage.setItem("tableChoisie", parseInt( $(this).val(), 10) );
         if($(this).val() == 0){ //toutes les tables
           numberBis = Math.floor(Math.random() * (10-0) + 0 ); 
           //$("#dropdownTable").text("Toutes les tables");
+          $("#spanTable").text( "Toutes les tables ");
           $("#spanCalcul").text(numberBis + " x " +number);
         }
         else{ //une table particulière
+          $("#spanTable").text ("Table de "+$(this).val());
           numberBis = parseInt( $(this).val(), 10 );
           //$("#dropdownTable").html("Table de "+ $(this).val());
           $("#spanCalcul").html($(this).val() +" x " +number);
           //comment juste changer le texte entre les balises du button?
         }  
-        res = parseInt(number*numberBis, 10);
+        res = parseInt(number*numberBis, 10); //parseInt inutil
         console.log("valeur table ->"+$(this).val());
         console.log("number -> " +number + " | numberBis -> "+ numberBis +" || res -> "+res);
       });
@@ -59,7 +62,7 @@ window.onload = function () {
         }
         async function dommage(id){
           $("#"+id+"").html(`<div class="alert alert-danger ml-5" role="alert">
-          Dommage <i class="em em-face_palm"></i> ${localStorage.getItem("bonneRep")} bonne réponces sur ${localStorage.getItem("totalRep")}
+          Dommage <i class="em em-face_palm"></i> ${localStorage.getItem("bonneRep")} bonne réponces sur ${localStorage.getItem("totalRep")}. La bonne réponse était : ${res}
         </div>`);
         $("#"+id+"").delay(2000);
         newCalcul();
@@ -67,15 +70,23 @@ window.onload = function () {
 
         function newCalcul(){ 
           //on remet le input vide
-          $("#inputCalcul").val = " vide";
-    
+          $("#inputCalcul").value = '';
+          var numberOld = number;
+          var numberBisOld = numberBis;
+
           if(localStorage.getItem("tableChoisie") == 0){ //toutes les tables
-            number = Math.floor(Math.random() * (10-0) + 0 ); //entier entre 0 et 10 inclus;
-            numberBis = Math.floor(Math.random() * (10-0) + 0 );
+            while(numberOld == number || numberBis == numberBisOld)
+            {
+              number = Math.floor(Math.random() * (10-0) + 0 ); //entier entre 0 et 10 inclus;
+              numberBis = Math.floor(Math.random() * (10-0) + 0 );
+            }
             $("#spanCalcul").text(numberBis + " x " +number);
           }
           else{ //une table particulière
-            number = Math.floor(Math.random() * (10-0) + 0 ); //entier entre 0 et 10 inclus;
+            while(numberOld == number)
+            {
+              number = Math.floor(Math.random() * (10-0) + 0 ); //entier entre 0 et 10 inclus;
+            }
             numberBis = localStorage.getItem("tableChoisie");
             $("#spanCalcul").html(localStorage.getItem("tableChoisie") +" x " +number);
           //comment juste changer le texte entre les balises du button?

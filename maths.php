@@ -54,6 +54,7 @@ $page->appendContent(<<<CALCUL
     
     <div class="input-group mb-3">
     <div class="input-group-prepend">
+      <span id="spanTable"class="input-group-text">Choix Table... </span>
       <span id="spanCalcul"class="input-group-text">0 x 0 = </span>
     </div>
     <input type="text" pattern="^(0|[1-9][0-9]*)$" id="inputCalcul" class="form-control" aria-label="Amount (to the nearest dollar)">
