@@ -29,7 +29,7 @@ $page->appendContent(<<<CALCUL
     
   
     <div class= ml-5 mt-5 container">
-    <div class="mx-auto">
+      <div class="mx-auto">
     
         <div id="dropdownTable" class="dropdown mr-4 ">
           <button id="buttonDropdown" class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -52,27 +52,25 @@ $page->appendContent(<<<CALCUL
     </div>
 
     
-    <div class="input-group mb-3">
-    <div class="input-group-prepend">
-      <span id="spanTable"class="input-group-text">Choix Table... </span>
-      <span id="spanCalcul"class="input-group-text">0 x 0 = </span>
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span id="spanTable"class="input-group-text">Choix Table... </span>
+        <span id="spanCalcul"class="input-group-text">0 x 0 = </span>
+      </div>
+      <div class="col-xs-4">
+      <input type="text" pattern="^(0|[1-9][0-9]*)$" id="inputCalcul" class="form-control" aria-label="Amount (to the nearest dollar)">
+      </div>
+      <button id="finish" class="btn btn-danger mb-2">Ok !</button>
     </div>
-    <input type="text" pattern="^(0|[1-9][0-9]*)$" id="inputCalcul" class="form-control" aria-label="Amount (to the nearest dollar)">
-  </div>
 
       
     </div>
     <div class="form-group mx-sm-3 mb-2">
       </div>
-    <button id="finish" class="btn btn-danger mb-2">Ok !</button>
-    <div id="okNotok"></div>
+      <div id="okNotok"></div>
 
 CALCUL
 );
-
-
-
-
 
 $html = $page->toHTML();
 echo($html);

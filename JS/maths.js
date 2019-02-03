@@ -26,7 +26,7 @@ window.onload = function () {
           numberBis = parseInt( $(this).val(), 10 );
           //$("#dropdownTable").html("Table de "+ $(this).val());
           $("#spanCalcul").html($(this).val() +" x " +number);
-          //comment juste changer le texte entre les balises du button?
+          
         }  
         res = parseInt(number*numberBis, 10); //parseInt inutil
         console.log("valeur table ->"+$(this).val());
@@ -70,7 +70,7 @@ window.onload = function () {
 
         function newCalcul(){ 
           //on remet le input vide
-          $("#inputCalcul").value = '';
+          $("#inputCalcul").val("");
           var numberOld = number;
           var numberBisOld = numberBis;
 
@@ -89,13 +89,12 @@ window.onload = function () {
             }
             numberBis = localStorage.getItem("tableChoisie");
             $("#spanCalcul").html(localStorage.getItem("tableChoisie") +" x " +number);
-          //comment juste changer le texte entre les balises du button?
           }
 
           res = number*numberBis;  
           console.log("valeur table ->"+ localStorage.getItem("tableChoisie"));
           console.log("number -> " +number + " | numberBis -> "+ numberBis +" || res -> "+res);
-
+          
         }
 
         
